@@ -127,6 +127,21 @@ namespace fs2ff.SimConnect
 
         private void RequestAttitudeData(object? _)
         {
+
+            try
+            {
+                _simConnect?.RequestDataOnSimObject(
+                    REQUEST.Position, DEFINITION.Position,
+                    SimConnectImpl.SIMCONNECT_OBJECT_ID_USER,
+                    SIMCONNECT_PERIOD.ONCE,
+                    SIMCONNECT_DATA_REQUEST_FLAG.DEFAULT,
+                    0, 0, 0);
+            }
+            catch (COMException e)
+            {
+                Console.Error.WriteLine("Exception caught: " + e);
+            }
+
             try
             {
                 _simConnect?.RequestDataOnSimObject(
@@ -169,14 +184,14 @@ namespace fs2ff.SimConnect
             RegisterPositionStruct();
             RegisterAttitudeStruct();
             RegisterTrafficStruct();
-
+/*
             _simConnect?.RequestDataOnSimObject(
                 REQUEST.Position, DEFINITION.Position,
                 SimConnectImpl.SIMCONNECT_OBJECT_ID_USER,
                 SIMCONNECT_PERIOD.SECOND,
                 SIMCONNECT_DATA_REQUEST_FLAG.DEFAULT,
                 0, 0, 0);
-
+*/
             _simConnect?.RequestDataOnSimObjectType(REQUEST.TrafficAircraft, DEFINITION.Traffic, 200000, SIMCONNECT_SIMOBJECT_TYPE.AIRCRAFT);
             _simConnect?.RequestDataOnSimObjectType(REQUEST.TrafficHelicopter, DEFINITION.Traffic, 200000, SIMCONNECT_SIMOBJECT_TYPE.HELICOPTER);
 
