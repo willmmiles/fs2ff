@@ -21,6 +21,7 @@ namespace fs2ff.SimConnect
 
         public event Func<Attitude, Task>? AttitudeReceived;
         public event Func<Position, Task>? PositionReceived;
+        public event Func<AGLAltitude, Task>? AGLAltitudeReceived;
         public event Action<bool>? StateChanged;
         public event Func<Traffic, uint, Task>? TrafficReceived;
 
@@ -103,11 +104,15 @@ namespace fs2ff.SimConnect
             AddToDataDefinition(DEFINITION.Position, "PLANE LATITUDE", "Degrees");
             AddToDataDefinition(DEFINITION.Position, "PLANE LONGITUDE", "Degrees");
             AddToDataDefinition(DEFINITION.Position, "PLANE ALTITUDE", "Meters");
-            AddToDataDefinition(DEFINITION.Position, "PLANE ALT ABOVE GROUND", "Feet");
             AddToDataDefinition(DEFINITION.Position, "GPS GROUND TRUE TRACK", "Degrees");
             AddToDataDefinition(DEFINITION.Position, "GPS GROUND SPEED", "Meters per second");
 
             _simConnect?.RegisterDataDefineStruct<Position>(DEFINITION.Position);
+        }
+
+        private void RegisterAGLStruct()
+        {
+            AddToDataDefinition(DEFINITION.AGLAltitude, "PLANE ALT ABOVE GROUND", "Feet");
         }
 
         private void RegisterTrafficStruct()
@@ -156,6 +161,20 @@ namespace fs2ff.SimConnect
             {
                 Console.Error.WriteLine("Exception caught: " + e);
             }
+
+            try
+            {
+                _simConnect?.RequestDataOnSimObject(
+                    REQUEST.AGLAltitude, DEFINITION.AGLAltitude,
+                    SimConnectImpl.SIMCONNECT_OBJECT_ID_USER,
+                    SIMCONNECT_PERIOD.ONCE,
+                    SIMCONNECT_DATA_REQUEST_FLAG.DEFAULT,
+                    0, 0, 0);
+            }
+            catch (COMException e)
+            {
+                Console.Error.WriteLine("Exception caught: " + e);
+            }
         }
 
         private void SimConnect_OnRecvEventObjectAddremove(SimConnectImpl sender, SIMCONNECT_RECV_EVENT_OBJECT_ADDREMOVE data)
@@ -185,6 +204,7 @@ namespace fs2ff.SimConnect
             RegisterPositionStruct();
             RegisterAttitudeStruct();
             RegisterTrafficStruct();
+            RegisterAGLStruct();
 /*
             _simConnect?.RequestDataOnSimObject(
                 REQUEST.Position, DEFINITION.Position,
@@ -219,6 +239,13 @@ namespace fs2ff.SimConnect
                 data.dwData?.FirstOrDefault() is Attitude att)
             {
                 await AttitudeReceived.RaiseAsync(att).ConfigureAwait(false);
+            }
+
+            if (data.dwRequestID == (uint) REQUEST.AGLAltitude &&
+                data.dwDefineID == (uint) DEFINITION.AGLAltitude &&
+                data.dwData?.FirstOrDefault() is AGLAltitude agl)
+            {
+                await AGLAltitudeReceived.RaiseAsync(agl).ConfigureAwait(false);
             }
 
             if (data.dwRequestID == (uint) REQUEST.TrafficObjectBase + data.dwObjectID &&

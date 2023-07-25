@@ -27,6 +27,7 @@ namespace fs2ff
         private bool _autoConnectEnabled = Preferences.Default.auto_connect_enabled;
         private bool _dataAttitudeEnabled = Preferences.Default.att_enabled;
         private bool _dataPositionEnabled = Preferences.Default.pos_enabled;
+        private bool _dataAGLEnabled = Preferences.Default.agl_enabled;
         private bool _dataTrafficEnabled = Preferences.Default.tfk_enabled;
         private bool _errorOccurred;
         private IntPtr _hwnd = IntPtr.Zero;
@@ -160,6 +161,19 @@ namespace fs2ff
                 {
                     _dataPositionEnabled = value;
                     Preferences.Default.pos_enabled = value;
+                    Preferences.Default.Save();
+                }
+            }
+        }
+
+        public bool DataAGLEnabled
+        {
+            get => _dataAGLEnabled;
+            set{
+                if (value != _dataAGLEnabled)
+                {
+                    _dataAGLEnabled = value;
+                    Preferences.Default.agl_enabled = value;
                     Preferences.Default.Save();
                 }
             }

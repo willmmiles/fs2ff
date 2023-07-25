@@ -8,6 +8,7 @@ namespace fs2ff.SimConnect
         Undefined,
         Position,
         Attitude,
+        AGLAltitude,
         TrafficAircraft,
         TrafficHelicopter,
         TrafficObjectBase = 0x01000000

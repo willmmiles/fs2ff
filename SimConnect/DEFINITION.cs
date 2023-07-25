@@ -8,6 +8,7 @@ namespace fs2ff.SimConnect
         Undefined,
         Position,
         Attitude,
+        AGLAltitude,
         Traffic
     }
 }

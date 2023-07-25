@@ -107,6 +107,9 @@
                     IsChecked="{Binding DataPositionEnabled, Mode=TwoWay}"
                     Content="Position" />
                 <CheckBox
+                    IsChecked="{Binding DataAGLEnabled, Mode=TwoWay}"
+                    Content="AGL Altitude" />
+                <CheckBox
                     IsChecked="{Binding DataTrafficEnabled, Mode=TwoWay}"
                     Content="Traffic" />
                 <CheckBox

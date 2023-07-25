@@ -58,6 +58,18 @@ namespace fs2ff {
                 this["pos_enabled"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool agl_enabled {
+            get {
+                return ((bool)(this["agl_enabled"]));
+            }
+            set {
+                this["agl_enabled"] = value;
+            }
+        }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
