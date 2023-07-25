@@ -103,6 +103,7 @@ namespace fs2ff.SimConnect
             AddToDataDefinition(DEFINITION.Position, "PLANE LATITUDE", "Degrees");
             AddToDataDefinition(DEFINITION.Position, "PLANE LONGITUDE", "Degrees");
             AddToDataDefinition(DEFINITION.Position, "PLANE ALTITUDE", "Meters");
+            AddToDataDefinition(DEFINITION.Position, "PLANE ALT ABOVE GROUND", "Feet");
             AddToDataDefinition(DEFINITION.Position, "GPS GROUND TRUE TRACK", "Degrees");
             AddToDataDefinition(DEFINITION.Position, "GPS GROUND SPEED", "Meters per second");
 
@@ -212,6 +213,8 @@ namespace fs2ff.SimConnect
             {
                 await PositionReceived.RaiseAsync(pos).ConfigureAwait(false);
             }
+
+            if
 
             if (data.dwRequestID == (uint) REQUEST.Attitude &&
                 data.dwDefineID == (uint) DEFINITION.Attitude &&
