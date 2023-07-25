@@ -214,8 +214,6 @@ namespace fs2ff.SimConnect
                 await PositionReceived.RaiseAsync(pos).ConfigureAwait(false);
             }
 
-            if
-
             if (data.dwRequestID == (uint) REQUEST.Attitude &&
                 data.dwDefineID == (uint) DEFINITION.Attitude &&
                 data.dwData?.FirstOrDefault() is Attitude att)
