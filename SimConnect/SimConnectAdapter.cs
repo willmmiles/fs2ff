@@ -113,6 +113,8 @@ namespace fs2ff.SimConnect
         private void RegisterAGLStruct()
         {
             AddToDataDefinition(DEFINITION.AGLAltitude, "PLANE ALT ABOVE GROUND", "Feet");
+
+            _simConnect?.RegisterDataDefineStruct<AGLAltitude>(DEFINITION.AGLAltitude);
         }
 
         private void RegisterTrafficStruct()
