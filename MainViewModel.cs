@@ -43,6 +43,7 @@ namespace fs2ff
             _simConnect.PositionReceived += SimConnectPositionReceived;
             _simConnect.AttitudeReceived += SimConnectAttitudeReceived;
             _simConnect.TrafficReceived += SimConnectTrafficReceived;
+            _simConnect.AGLAltitudeReceived += simConnectAGLAltitudeReceived;
 
             _ipDetectionService = ipDetectionService;
             _ipDetectionService.NewIpDetected += IpDetectionService_NewIpDetected;
@@ -275,6 +276,7 @@ namespace fs2ff
             _simConnect.TrafficReceived -= SimConnectTrafficReceived;
             _simConnect.AttitudeReceived -= SimConnectAttitudeReceived;
             _simConnect.PositionReceived -= SimConnectPositionReceived;
+            _simConnect.AGLAltitudeReceived -= simConnectAGLAltitudeReceived;
             _simConnect.StateChanged -= SimConnectStateChanged;
             _simConnect.Dispose();
 
@@ -369,6 +371,14 @@ namespace fs2ff
             if (DataPositionEnabled && (pos.Latitude != 0d || pos.Longitude != 0d))
             {
                 await _dataSender.Send(pos).ConfigureAwait(false);
+            }
+        }
+
+        private async Task simConnectAGLAltitudeReceived(AGLAltitude agl)
+        {
+            if (DataAGLEnabled && (agl.AltitudeAboveGround != 0d))
+            {
+                await _dataSender.Send(agl).ConfigureAwait(false);
             }
         }
 
