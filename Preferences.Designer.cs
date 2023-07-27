@@ -70,6 +70,18 @@ namespace fs2ff {
                 this["agl_enabled"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2500")]
+        public uint agl_cap {
+            get {
+                return ((uint)(this["agl_cap"]));
+            }
+            set {
+                this["agl_cap"] = value;
+            }
+        }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

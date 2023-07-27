@@ -14,6 +14,9 @@
     <Setting Name="agl_enabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="agl_cap" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">2500</Value>
+    </Setting>
     <Setting Name="tfk_enabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>

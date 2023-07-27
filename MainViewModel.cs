@@ -28,6 +28,7 @@ namespace fs2ff
         private bool _dataAttitudeEnabled = Preferences.Default.att_enabled;
         private bool _dataPositionEnabled = Preferences.Default.pos_enabled;
         private bool _dataAGLEnabled = Preferences.Default.agl_enabled;
+        private uint _dataAGLCap = Preferences.Default.agl_cap;
         private bool _dataTrafficEnabled = Preferences.Default.tfk_enabled;
         private bool _errorOccurred;
         private IntPtr _hwnd = IntPtr.Zero;
@@ -170,11 +171,26 @@ namespace fs2ff
         public bool DataAGLEnabled
         {
             get => _dataAGLEnabled;
-            set{
+            set
+            {
                 if (value != _dataAGLEnabled)
                 {
                     _dataAGLEnabled = value;
                     Preferences.Default.agl_enabled = value;
+                    Preferences.Default.Save();
+                }
+            }
+        }
+
+        public uint DataAGLCap
+        {
+            get => _dataAGLCap;
+            set
+            {
+                if (value != _dataAGLCap)
+                {
+                    _dataAGLCap = value;
+                    Preferences.Default.agl_cap = value;
                     Preferences.Default.Save();
                 }
             }
@@ -376,9 +392,9 @@ namespace fs2ff
 
         private async Task simConnectAGLAltitudeReceived(AGLAltitude agl)
         {
-            if (DataAGLEnabled && (agl.AltitudeAboveGround != 0d))
+            if (DataAGLEnabled && agl.AltitudeAboveGround != 0d)
             {
-                await _dataSender.Send(agl).ConfigureAwait(false);
+                await _dataSender.Send(agl, DataAGLCap).ConfigureAwait(false);
             }
         }
 

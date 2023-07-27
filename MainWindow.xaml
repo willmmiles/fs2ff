@@ -109,6 +109,7 @@
                 <CheckBox
                     IsChecked="{Binding DataAGLEnabled, Mode=TwoWay}"
                     Content="AGL Altitude" />
+                <TextBox Name="NumberTextBox" Text="{Binding DataAGLCap, Mode=TwoWay}"/>
                 <CheckBox
                     IsChecked="{Binding DataTrafficEnabled, Mode=TwoWay}"
                     Content="Traffic" />

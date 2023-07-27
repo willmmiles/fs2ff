@@ -51,12 +51,19 @@ namespace fs2ff
             await Send(data).ConfigureAwait(false);
         }
 
-        public async Task Send(AGLAltitude agl)
+        public async Task Send(AGLAltitude agl, uint aglCap)
         {
-            var data = string.Format(CultureInfo.InvariantCulture,
-            "XAGL{0},{1:0.##}", SimId, agl.AltitudeAboveGround);
+            if (aglCap < agl.AltitudeAboveGround) {
+                var data = string.Format(CultureInfo.InvariantCulture,
+                "XAGL{0},{1:0}", SimId, aglCap);
 
-            await Send(data).ConfigureAwait(false);
+                await Send(data).ConfigureAwait(false);
+            } else {
+                var data = string.Format(CultureInfo.InvariantCulture,
+                "XAGL{0},{1:0.##}", SimId, agl.AltitudeAboveGround);
+
+                await Send(data).ConfigureAwait(false);
+            }
         }
 
         public async Task Send(Traffic t, uint id)

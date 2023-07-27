@@ -247,7 +247,7 @@ namespace fs2ff.SimConnect
                 data.dwDefineID == (uint) DEFINITION.AGLAltitude &&
                 data.dwData?.FirstOrDefault() is AGLAltitude agl)
             {
-                await AGLAltitudeReceived.RaiseAsync(agl).ConfigureAwait(false);
+                    await AGLAltitudeReceived.RaiseAsync(agl).ConfigureAwait(false);
             }
 
             if (data.dwRequestID == (uint) REQUEST.TrafficObjectBase + data.dwObjectID &&
