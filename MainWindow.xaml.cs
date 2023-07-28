@@ -3,7 +3,9 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
+using System.Text.RegularExpressions;
 using fs2ff.SimConnect;
 
 namespace fs2ff
@@ -37,6 +39,12 @@ namespace fs2ff
             }
 
             return IntPtr.Zero;
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

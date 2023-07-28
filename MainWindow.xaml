@@ -11,8 +11,8 @@
         mc:Ignorable="d"
         Title="{Binding WindowTitle}"
         Icon="img\icon.ico"
-        Width="555" Height="430"
-        MinWidth="555" MinHeight="430"
+        Width="555" Height="530"
+        MinWidth="555" MinHeight="530"
         Closing="Window_Closing"
         Loaded="Window_Loaded"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -109,13 +109,16 @@
                 <CheckBox
                     IsChecked="{Binding DataAGLEnabled, Mode=TwoWay}"
                     Content="AGL Altitude" />
-                <TextBox Name="NumberTextBox" Text="{Binding DataAGLCap, Mode=TwoWay}"/>
                 <CheckBox
                     IsChecked="{Binding DataTrafficEnabled, Mode=TwoWay}"
                     Content="Traffic" />
                 <CheckBox
                     IsChecked="{Binding DataAttitudeEnabled, Mode=TwoWay}"
                     Content="Attitude" />
+                <Label
+                    Content="AGL AlTITUDE CAP: ft"
+                    Margin="0,20,0,5" />
+                <TextBox Name="NumberTextBox" PreviewTextInput="NumberValidationTextBox" Text="{Binding DataAGLCap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=1000}"/>
                 <Label
                     Content="{Binding Value, ElementName=Slider, Converter={c:FormatStringConverter}, ConverterParameter='ATTITUDE FREQ: {0} Hz'}"
                     Margin="0,14,0,5" />
