@@ -1,48 +1,46 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <ApplicationIcon>img\icon.ico</ApplicationIcon>
     <UseWPF>true</UseWPF>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.1.0-dev</Version>
+    <Version>0.2.0-sgl</Version>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="lib\Microsoft.FlightSimulator.SimConnect.dll">
     </Reference>
   </ItemGroup>
-
   <ItemGroup>
     <ContentWithTargetPath Include="lib\SimConnect.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>SimConnect.dll</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Fody" Version="6.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.37" />
-    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
-
   <ItemGroup>
     <None Remove="img\icon.ico" />
     <Resource Include="img\icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Preferences.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -50,12 +48,10 @@
       <DependentUpon>Preferences.settings</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Preferences.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Preferences.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
 </Project>

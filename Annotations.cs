@@ -293,7 +293,7 @@ namespace fs2ff.Annotations
       ParameterName = parameterName;
     }
 
-    [CanBeNull] public string ParameterName { get; }
+    [CanBeNull] public string? ParameterName { get; }
   }
 
   /// <summary>
@@ -534,7 +534,7 @@ namespace fs2ff.Annotations
       Comment = comment;
     }
 
-    [CanBeNull] public string Comment { get; }
+    [CanBeNull] public string? Comment { get; }
   }
 
   /// <summary>
@@ -580,7 +580,7 @@ namespace fs2ff.Annotations
       Justification = justification;
     }
 
-    [CanBeNull] public string Justification { get; }
+    [CanBeNull] public string? Justification { get; }
   }
 
   /// <summary>
@@ -617,7 +617,7 @@ namespace fs2ff.Annotations
       BasePath = basePath;
     }
 
-    [CanBeNull] public string BasePath { get; }
+    [CanBeNull] public string? BasePath { get; }
   }
 
   /// <summary>
@@ -681,7 +681,7 @@ namespace fs2ff.Annotations
     /// Allows specifying a macro that will be executed for a <see cref="SourceTemplateAttribute">source template</see>
     /// parameter when the template is expanded.
     /// </summary>
-    [CanBeNull] public string Expression { get; set; }
+    [CanBeNull] public string? Expression { get; set; }
 
     /// <summary>
     /// Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
@@ -697,7 +697,7 @@ namespace fs2ff.Annotations
     /// Identifies the target parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
     /// <see cref="MacroAttribute"/> is applied on a template method.
     /// </summary>
-    [CanBeNull] public string Target { get; set; }
+    [CanBeNull] public string? Target { get; set; }
   }
 
   [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = true)]
@@ -782,7 +782,7 @@ namespace fs2ff.Annotations
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -800,7 +800,7 @@ namespace fs2ff.Annotations
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -819,7 +819,7 @@ namespace fs2ff.Annotations
       AnonymousProperty = anonymousProperty;
     }
 
-    [CanBeNull] public string AnonymousProperty { get; }
+    [CanBeNull] public string? AnonymousProperty { get; }
   }
 
   /// <summary>
@@ -922,7 +922,7 @@ namespace fs2ff.Annotations
       Name = name;
     }
 
-    [CanBeNull] public string Name { get; }
+    [CanBeNull] public string? Name { get; }
   }
 
   [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
@@ -1216,7 +1216,7 @@ namespace fs2ff.Annotations
       }
 
       [NotNull] public string BaseType { get; }
-      [CanBeNull] public string PageName { get; }
+      [CanBeNull] public string? PageName { get; }
   }
 
   [AttributeUsage(AttributeTargets.Method)]
